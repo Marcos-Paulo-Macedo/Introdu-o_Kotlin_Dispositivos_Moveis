@@ -1,0 +1,131 @@
+//Variaveis usadas
+var idade = 25
+var altura = 1.78
+var nome = "Marcos"
+var estudante: Boolean = true
+val saudacao = "Seja bem vindo"
+var salario = 2500
+var quantidadeMeses = 12
+var quantidadeProdutos = 23
+var nomeProdu = "Celular"
+var precoProd = 12.000
+var impostoProd: Double = 0.01
+var margemLucro: Double = 0.02
+
+
+        
+//Exercicio 01
+fun main() {
+
+
+    var soma = somaValores(10,80)
+    var multAlt = multiAultura(2)
+
+    println(idade)
+    println(altura)
+    println(nome)
+    println(estudante)
+    println(soma)
+    println(multAlt)
+    println("$nome. $saldação")
+
+}
+
+fun somaValores (soma1: Int, soma2: Int): Int {
+    return soma2 + soma1
+
+}
+
+fun multiAultura(value2: Int): Double{
+    return altura * value2
+}
+
+//Exercicio 02
+fun main(){
+
+    var salarioPorAno = salAnual()
+    println(salarioPorAno)
+
+    var descoto =  descSal(0.01)
+    println(descoto)
+
+    var result = resul()
+    println(result)
+
+    println("$nome = $result")
+
+
+}
+
+fun salAnual(): Int{
+    return salario * quantidadeMeses
+}
+
+fun descSal(desc:Double): Double{
+    return salAnual() * desc
+}
+
+fun resul(): Double{
+    return salAnual() -  descSal(0.01)
+}
+
+
+//Exercicio 03
+fun main() {
+
+    val valorTotalSemImpostos = calcularValorTotalSemImpostos(precoProd, quantidadeProdutos)
+    val valorImposto = calcularValorImposto(valorTotalSemImpostos, impostoProd)
+    val valorTotalComImpostos = calcularValorTotalComImpostos(valorTotalSemImpostos, valorImposto)
+    val precoVendaNecessario = calcularPrecoVenda(valorTotalComImpostos, margemLucro)
+
+    val precoVendaArredondado = arredondarPreco(precoVendaNecessario)
+    val valorTotalComImpostosFormatado = formatarComoMoeda(valorTotalComImpostos)
+    val precoVendaFormatado = formatarComoMoeda(precoVendaArredondado.replace(",",".").toDouble())
+    val mensagemFinal = criarMensagemFinal(nomeProdu, valorTotalComImpostosFormatado, precoVendaFormatado)
+
+    println("Idade: $idade")
+    println("Altura: $altura")
+    println("Nome: $nome")
+    println("Estudante: $estudante")
+    println("Saudação: $saudacao")
+    println("Salário: $salario")
+    println("Quantidade de Meses: $quantidadeMeses")
+    println("Quantidade de Produtos: $quantidadeProdutos")
+    println("Nome do Produto: $nomeProdu")
+    println("Preço do Produto: R$ %.2f".format(precoProd))
+    println("Imposto do Produto: $impostoProd")
+    println("Margem de Lucro: $margemLucro")
+    println("Valor Total Sem Impostos: R$ %.2f".format(valorTotalSemImpostos))
+    println("Valor do Imposto: R$ %.2f".format(valorImposto))
+    println("Valor Total Com Impostos: $valorTotalComImpostosFormatado")
+    println("Preço de Venda Necessário: $precoVendaFormatado")
+    println("Mensagem Final: $mensagemFinal")
+}
+
+fun calcularValorTotalSemImpostos(precoProd: Double, quantidadeProdutos: Int): Double {
+    return precoProd * quantidadeProdutos
+    }
+
+fun calcularValorImposto(valorTotalSemImpostos: Double, impostoProd: Double): Double {
+    return valorTotalSemImpostos * impostoProd
+    }
+
+fun calcularValorTotalComImpostos(valorTotalSemImpostos: Double, valorImposto: Double): Double {
+    return valorTotalSemImpostos + valorImposto
+    }
+
+fun calcularPrecoVenda(valorTotalComImpostos: Double, margemLucro: Double): Double {
+    return valorTotalComImpostos * (1 + margemLucro)
+    }
+
+fun arredondarPreco(precoVendaNecessario: Double): String {
+    return "%.2f".format(precoVendaNecessario)
+    }
+
+fun formatarComoMoeda(valor: Double): String {
+    return "R$ %.2f".format(valor)
+    }
+
+fun criarMensagemFinal(nomeProdu: String, valorTotalComImpostosFormatado: String, precoVendaFormatado: String): String {
+    return "Produto: $nomeProdu\nValor Total com Impostos: $valorTotalComImpostosFormatado\nPreço de Venda Sugerido: $precoVendaFormatado"
+    }
